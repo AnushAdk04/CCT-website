@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .myClass{
+            color: red;
+            padding-left: 100px;
+        }
+        .nextclass{
+            display: flex;
+            gap: 20px;
+        }
+        .addborder{
+            border: 5px solid ;
+            margin: 20px;
+        }
+        .mycontent{
+            padding:15px;
+            font-size: large;
+        }
+        .mycategory{
+            padding: 5px;
+            list-style: none;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <div></div>
+    <div> <h1 style="display: flex; justify-content: center;">List of Blogs</h1></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded',function()
+        {
+            const blogs = [
+                {
+                    "title" : 'Blog 1',
+                    "content" :'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi suscipit, eos, sequi dicta vitae eum accusamus voluptate laboriosam praesentium temporibus, a quos eveniet corrupti molestiae explicabo magni officiis quas nemo?',
+                    "category" : 'Category1',
+                    "tags" :["Tag1","Tag2","Tag3"],
+                    "date": '2023-9-09',
+                    "author": 'author 1',
+
+                },
+                {
+                    "title" : 'Blog 2',
+                    "content" :'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi suscipit, eos, sequi dicta vitae eum accusamus voluptate laboriosam praesentium temporibus, a quos eveniet corrupti molestiae explicabo magni officiis quas nemo?',
+                    "category" : 'Category1',
+                    "tags" :["Tag1","Tag2","Tag3"],
+                    "date": '2023-9-11',
+                    "author": 'author 2',
+                },
+                {
+                    "title" : 'Blog 3',
+                    "content" :'Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi suscipit, eos, sequi dicta vitae eum accusamus voluptate laboriosam praesentium temporibus, a quos eveniet corrupti molestiae explicabo magni officiis quas nemo?',
+                    "category" : 'Category1',
+                    "tags" :["Tag1","Tag2","Tag3"],
+                    "date": '2023-9-25',
+                    "author": 'author 3',
+                }
+            ];
+            const blogContainer = document.createElement('div');
+
+            blogs.forEach(blog=>{
+                const blogDiv = document.createElement('div');
+                const title = document.createElement('h1');
+                const content = document.createElement('p');
+                const category = document.createElement('p');
+                const tags = document.createElement('ul');
+                const date= document.createElement('p');
+                const author = document.createElement('p');
+
+                title.innerHTML=`Blog Title: ${blog.title}`;
+                content.innerHTML=`Blog Content: ${blog.content}`;
+                category.innerHTML=`Category: ${blog.category}`;
+                date.innerHTML=`Blog Date: ${blog.date}`;
+                author.innerHTML=`Blog Author: ${blog.author}`;
+
+                blog.tags.forEach(tag=>{
+                    const tagItem = document.createElement('li');
+                    tagItem.innerHTML = tag;
+                    tags.appendChild(tagItem);
+                });
+
+//Append Elements To BlogDiv
+                blogDiv.appendChild(title).classList.add("myClass");
+                blogDiv.appendChild(content).classList.add("mycontent");
+                blogDiv.appendChild(category).classList.add("mycategory");
+                blogDiv.appendChild(tags).classList.add("mycategory");
+                blogDiv.appendChild(date).classList.add("mycategory");
+                blogDiv.appendChild(author).classList.add("mycategory");
+                // Append blogDiv to blogContainer
+                blogContainer.appendChild(blogDiv).classList.add("addborder");
+            });
+            //Append blogContainer to the body
+            document.body.appendChild(blogContainer).classList.add("nextclass");
+        });
+    </script>
+</body>
+</html>
