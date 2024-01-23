@@ -15,6 +15,7 @@
             align-items: center;
             height: 100vh;
             background-color: lightblue;
+            justify-content: center;
         }
 
         #quiz-container {
@@ -31,7 +32,6 @@
             font-size: 1.5em;
             margin-bottom: 10px;
             position: relative;
-            text-align: left;
             font-weight: bold;
             padding-left: 10px;
         }
@@ -122,11 +122,12 @@
 
     <div id="quiz-container">
         <div class="quiz-title">Anush Adhikari Quiz App</div>
+        <hr size="5" color="dodgerblue">
         <div id="question-count">Question 1 / 10</div>
         <div class="quiz-option-container"></div>
         <div id="button-container">
             <button id="next-button">Next</button>
-            <button id="submit-button" style="display:none">Submit</button>
+            <button id="submit-button" style="display:none" disabled>Submit</button>
         </div>
         <div id="score-container"></div>
     </div>
@@ -267,6 +268,14 @@
                 updateScore();
                 scoreContainer.innerHTML = `Your Score: ${score} / ${finalResult.length}`;
                 scoreContainer.style.display = 'block';
+            });
+
+            // Enable the submit button only if an answer is selected on the last question
+            quizContainer.addEventListener('click', () => {
+                if (currentIndex === finalResult.length - 1) {
+                    const selectedOption = quizContainer.querySelector('.selected-option');
+                    submitButton.disabled = selectedOption ? false : true;
+                }
             });
         });
     </script>
